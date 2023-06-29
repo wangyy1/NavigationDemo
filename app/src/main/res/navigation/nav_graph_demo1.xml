@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/oneFragment">
+
+
+    <fragment
+        android:id="@+id/oneFragment"
+        android:name="com.example.navigationdemo.demo1.OneFragment"
+        android:label="fragment_one_demo1"
+        tools:layout="@layout/fragment_one_demo1">
+        <action
+            android:id="@+id/action_oneFragment_to_twoFragment"
+            app:destination="@id/twoFragment"
+            app:enterAnim="@anim/slide_in_right_enter"
+            app:exitAnim="@anim/slide_out_left_exit"
+            app:popEnterAnim="@anim/slide_in_left_pop_enter"
+            app:popExitAnim="@anim/slide_out_right_pop_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/twoFragment"
+        android:name="com.example.navigationdemo.demo1.TwoFragment"
+        android:label="TwoFragment"
+        tools:layout="@layout/fragment_two_demo1">
+
+        <argument
+            android:name="userId"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_twoFragment_to_threeActivity"
+            app:destination="@id/threeActivity" />
+
+        <action
+            android:id="@+id/action_twoFragment_to_threeFragment"
+            app:destination="@id/threeFragment" />
+
+    </fragment>
+    <activity
+        android:id="@+id/threeActivity"
+        android:name="com.example.navigationdemo.demo1.ThreeActivity"
+        android:label="ThreeActivity" />
+
+    <action
+        android:id="@+id/action_global_twoFragment"
+        app:destination="@id/twoFragment" />
+    <fragment
+        android:id="@+id/threeFragment"
+        android:name="com.example.navigationdemo.demo1.ThreeFragment"
+        android:label="ThreeFragment" >
+
+        <!-- 此 action 会pop到twoFragment页面，如果 popUpToInclusive 是true 会把popUpTo中的页面也pop掉 -->
+        <action
+            android:id="@+id/action_threeFragment_pop"
+            app:popUpTo="@id/twoFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+
+</navigation>
